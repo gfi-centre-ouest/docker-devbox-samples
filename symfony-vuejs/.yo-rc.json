@@ -1,0 +1,37 @@
+{
+  "@gfi-centre-ouest/generator-docker-devbox": {
+    "promptValues": {
+      "projectName": "symfony-vuejs",
+      "authorName": "Rémi Alvergnat",
+      "authorEmail": "remi.alvergnat@gfi.fr",
+      "features~0": [
+        "php-fpm-apache",
+        "postgresql",
+        "node",
+        "mailcatcher"
+      ],
+      "features~0~php-fpm-apache~phpVersion": "7.3",
+      "features~0~php-fpm-apache~apacheVersion": "2.4.39",
+      "features~0~php-fpm-apache~phpExtensions": [
+        "xdebug",
+        "opcache",
+        "zip"
+      ],
+      "features~0~php-fpm-apache~phpTools": [
+        "composer",
+        "symfony-client"
+      ],
+      "features~0~php-fpm-apache~apacheExtensions": [
+        "rewrite"
+      ],
+      "features~0~postgresql~postgresVersion": "11.3",
+      "features~0~node~nodeVersion": "12",
+      "features~0~node~nodeTools": [
+        "@vue/cli"
+      ],
+      "features~0~more": false,
+      "features~1~php-fpm-apache~nativeClientPostgreSQL": null,
+      "portPrefix": 417
+    }
+  }
+}
