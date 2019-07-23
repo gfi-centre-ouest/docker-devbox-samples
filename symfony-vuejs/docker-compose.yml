@@ -10,6 +10,7 @@ services:
     volumes:
       - '${COMPOSE_PROJECT_DIR}:/var/www/html'
       - '${COMPOSE_PROJECT_DIR}/.docker/php/php-config.ini:/usr/local/etc/php/conf.d/php-config.ini'
+      - '${COMPOSE_PROJECT_DIR}/.docker/php/msmtprc:/etc/msmtprc'
       - 'php-composer-cache:/composer/cache'
     user: '${USER_ID}:${GROUP_ID}'
   web:

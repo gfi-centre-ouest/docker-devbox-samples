@@ -29,11 +29,11 @@ services:
   db:
     ports:
       - '${DOCKER_DEVBOX_PORT_PREFIX}32:5432'
-  mailcatcher:
+  mail:
     build:
       context: .docker
-      dockerfile: mailcatcher/Dockerfile
-    image: '${DOCKER_DEVBOX_REGISTRY}${DOCKER_DEVBOX_REGISTRY_REPOSITORY}/mailcatcher'
+      dockerfile: mail/Dockerfile
+    image: '${DOCKER_DEVBOX_REGISTRY}${DOCKER_DEVBOX_REGISTRY_REPOSITORY}/mail'
     init: true
     restart: '${DOCKER_DEVBOX_RESTART_POLICY}'
     networks:
@@ -41,10 +41,10 @@ services:
       - reverse-proxy
     labels:
       - traefik.enable=true
-      - 'traefik.frontend.rule=Host:mailcatcher.${DOCKER_DEVBOX_DOMAIN_PREFIX}.${DOCKER_DEVBOX_DOMAIN}'
+      - 'traefik.frontend.rule=Host:mail.${DOCKER_DEVBOX_DOMAIN_PREFIX}.${DOCKER_DEVBOX_DOMAIN}'
       - traefik.port=80
     environment:
-      - 'VIRTUAL_HOST=mailcatcher.${DOCKER_DEVBOX_DOMAIN_PREFIX}.${DOCKER_DEVBOX_DOMAIN}'
+      - 'VIRTUAL_HOST=mail.${DOCKER_DEVBOX_DOMAIN_PREFIX}.${DOCKER_DEVBOX_DOMAIN}'
       - VIRTUAL_PORT=80
 networks:
   reverse-proxy:

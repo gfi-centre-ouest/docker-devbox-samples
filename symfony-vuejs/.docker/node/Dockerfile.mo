@@ -1,5 +1,5 @@
 FROM node:12
-LABEL maintainer="Loïc Vacquet <loic.vacquet@gfi.fr>"
+LABEL maintainer="Rémi Alvergnat <remi.alvergnat@gfi.fr>"
 {{#DOCKER_DEVBOX_COPY_CA_CERTIFICATES}}
 
 COPY .ca-certificates/* /usr/local/share/ca-certificates/

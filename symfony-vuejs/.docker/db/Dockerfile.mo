@@ -1,4 +1,4 @@
-FROM postgres:11.3
+FROM postgres:11.4
 LABEL maintainer="Rémi Alvergnat <remi.alvergnat@gfi.fr>"
 
 RUN apt-get update \

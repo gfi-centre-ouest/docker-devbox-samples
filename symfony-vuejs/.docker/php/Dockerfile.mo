@@ -1,5 +1,6 @@
-FROM php:7.3-fpm
-LABEL maintainer="Loïc Vacquet <loic.vacquet@gfi.fr>"
+FROM php:7.3-fpm-stretch
+# Use debian stretch instead of buster as a temporary workaround for docker-library/php#865
+LABEL maintainer="Rémi Alvergnat <remi.alvergnat@gfi.fr>"
 {{#DOCKER_DEVBOX_COPY_CA_CERTIFICATES}}
 
 COPY .ca-certificates/* /usr/local/share/ca-certificates/
@@ -32,10 +33,8 @@ RUN curl -fsSL -o /tmp/composer-setup.php https://getcomposer.org/installer \
 RUN curl -fsSL https://get.symfony.com/cli/installer | bash && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 
-RUN apt-get update -y && apt-get install -y ssmtp && rm -rf /var/lib/apt/lists/* \
-&& echo "FromLineOverride=YES" >> /etc/ssmtp/ssmtp.conf \
-&& echo "mailhub=mailcatcher.{{COMPOSE_NETWORK_NAME}}" >> /etc/ssmtp/ssmtp.conf \
-&& echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
+RUN apt-get update -y && apt-get install -y msmtp msmtp-mta && rm -rf /var/lib/apt/lists/* \
+&& echo 'sendmail_path = "/usr/sbin/sendmail -t -i"' > /usr/local/etc/php/conf.d/mail.ini
 
 RUN mkdir -p "$COMPOSER_HOME/cache" \
 && chown -R www-data:www-data $COMPOSER_HOME \
